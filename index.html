@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graciella Chelsea Lu | Portfolio Website</title>
+    
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Swiper CSS for Carousels -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#8B5CF6',
+                            purple: '#A78BFA',
+                            dark: '#0F172A',
+                            slate: '#F8FAFC',
+                            lightSlate: '#F1F5F9'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC;
+            color: #0F172A;
+        }
+
+        .font-heading {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Solid Soft Purple Theme (No Gradients) */
+        .text-gradient {
+            color: #8B5CF6;
+        }
+
+        .bg-gradient-brand {
+            background-color: #8B5CF6;
+        }
+
+        .border-gradient {
+            border-color: #8B5CF6;
+        }
+
+        /* Custom Swiper pagination and navigation styling */
+        .swiper-button-next, .swiper-button-prev {
+            color: #FFFFFF !important;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            width: 36px !important;
+            height: 36px !important;
+            border-radius: 50%;
+        }
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 14px !important;
+            font-weight: bold;
+        }
+        .swiper-pagination-bullet-active {
+            background: #8B5CF6 !important;
+            width: 20px !important;
+            border-radius: 6px !important;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        /* Tab Transition */
+        .page-tab-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .page-tab-content.active {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-purple-200 selection:text-purple-900">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 w-full glass-panel border-b border-slate-200/80 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" onclick="switchPage('home')" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-brand flex items-center justify-center text-white font-heading font-extrabold text-base shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
+                        GCL
+                    </div>
+                    <span class="font-heading font-extrabold text-xl sm:text-2xl tracking-tight text-slate-900">
+                        Graciella Chelsea Lu<span class="text-gradient">.</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation Links (No outer box container) -->
+                <nav class="hidden md:flex items-center space-x-2">
+                    <button onclick="switchPage('home')" id="nav-home" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-slate-600 hover:text-slate-900">
+                        Home
+                    </button>
+                    <button onclick="switchPage('experience')" id="nav-experience" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-slate-600 hover:text-slate-900">
+                        Experience
+                    </button>
+                    <button onclick="switchPage('projects')" id="nav-projects" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-slate-600 hover:text-slate-900">
+                        Projects
+                    </button>
+                </nav>
+
+                <!-- Mobile Hamburger Button -->
+                <div class="flex md:hidden items-center space-x-2">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 bg-white/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-3">
+            <nav class="flex flex-col space-y-1">
+                <button onclick="switchPage('home'); toggleMobileMenu()" id="mobile-nav-home" class="mobile-nav-btn text-left px-4 py-3 rounded-xl font-semibold text-slate-700 hover:bg-slate-100">
+                    <i class="fa-solid fa-house w-6 text-brand-blue"></i> Home
+                </button>
+                <button onclick="switchPage('experience'); toggleMobileMenu()" id="mobile-nav-experience" class="mobile-nav-btn text-left px-4 py-3 rounded-xl font-semibold text-slate-700 hover:bg-slate-100">
+                    <i class="fa-solid fa-briefcase w-6 text-brand-purple"></i> Experience & Credentials
+                </button>
+                <button onclick="switchPage('projects'); toggleMobileMenu()" id="mobile-nav-projects" class="mobile-nav-btn text-left px-4 py-3 rounded-xl font-semibold text-slate-700 hover:bg-slate-100">
+                    <i class="fa-solid fa-folder-open w-6 text-brand-blue"></i> Projects Portfolio
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- ================= PAGE 1: HOME PAGE ================= -->
+        <div id="page-home" class="page-tab-content active">
+            
+            <!-- Hero & About Me Section -->
+            <section class="relative py-12 lg:py-20 overflow-hidden">
+                <!-- Background Decorative Blobs -->
+                <div class="absolute top-1/4 left-1/3 w-96 h-96 bg-purple-300/30 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute top-1/3 right-10 w-80 h-80 bg-purple-200/40 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+                        
+                        <!-- Left Content (Name, About Me & Action Buttons) -->
+                        <div class="lg:col-span-8 text-left order-2 lg:order-1">
+                            <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 shadow-sm mb-4">
+                                <span class="flex h-2 w-2 rounded-full bg-emerald-500 mr-2.5 animate-pulse"></span>
+                                <span class="text-xs font-semibold text-slate-700 tracking-wide uppercase">Open for Opportunities & Collaborations</span>
+                            </div>
+
+                            <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-2">
+                                Hi, I'm <span class="text-gradient">Graciella Chelsea Lu</span>
+                            </h1>
+                            <p class="text-lg font-bold text-brand-purple mb-6">
+                                Informatics Student @Ciputra University
+                            </p>
+
+                            <!-- About Me Content -->
+                            <div class="mb-8">
+                                <h2 class="font-heading text-2xl font-bold text-slate-900 mb-3">
+                                    About Me
+                                </h2>
+                                <p class="text-slate-600 text-base sm:text-lg leading-relaxed mb-4">
+                                    I am a versatile and driven digital professional who thrives at the intersection of technical engineering and creative design. With multi-disciplinary expertise across <span class="font-semibold text-slate-900">IT & Web Solutions</span>, <span class="font-semibold text-slate-900">UI/UX & Graphic Design</span>, <span class="font-semibold text-slate-900">Video Editing</span>, and strategic <span class="font-semibold text-slate-900">Digital Marketing</span>, I craft seamless digital experiences that look great and deliver measurable impact.
+                                </p>
+                                <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+                                    Whether developing modern user interfaces, editing dynamic media assets, or leading collaborative student and committee initiatives, I bring clarity, adaptability, and high standards to every project I take on.
+                                </p>
+                            </div>
+
+                            <!-- CTAs -->
+                            <div class="flex flex-col sm:flex-row items-center justify-start gap-4">
+                                <button onclick="triggerDownloadCV()" class="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-slate-800 bg-white hover:bg-slate-50 border-2 border-slate-200 shadow-sm hover:border-slate-300 transition-all duration-200">
+                                    <i class="fa-solid fa-download mr-2 text-brand-blue"></i> Download CV
+                                </button>
+                                <button onclick="openContactModal()" class="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-white bg-gradient-brand shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:-translate-y-0.5 transition-all duration-200">
+                                    <i class="fa-solid fa-paper-plane mr-2"></i> Contact Me
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Right Small Circular Photo -->
+                        <div class="lg:col-span-4 flex justify-center items-center order-1 lg:order-2">
+                            <div class="relative">
+                                <div class="absolute -inset-1 rounded-full bg-purple-300 blur-md opacity-50 animate-pulse"></div>
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop" 
+                                     alt="Graciella Chelsea Lu" 
+                                     class="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full object-cover border-4 border-white shadow-xl hover:scale-105 transition-transform duration-300"
+                                     onerror="this.src='https://placehold.co/400x400/8b5cf6/ffffff?text=Graciella'">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="py-16 bg-slate-50 border-t border-slate-200/80">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="mb-10">
+                        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">Skills</h2>
+                    </div>
+
+                    <!-- Simplified Skills Cards Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- IT Tools -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-10 h-10 rounded-lg bg-blue-50 text-brand-blue flex items-center justify-center">
+                                    <i class="fa-solid fa-code text-lg"></i>
+                                </div>
+                                <h4 class="font-heading font-bold text-slate-900 text-base">IT & Development</h4>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">HTML/CSS</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">JavaScript</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">Tailwind CSS</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">React Basics</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">Git / GitHub</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">MySQL</span>
+                            </div>
+                        </div>
+
+                        <!-- Design Tools -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-10 h-10 rounded-lg bg-purple-50 text-brand-purple flex items-center justify-center">
+                                    <i class="fa-solid fa-pen-nib text-lg"></i>
+                                </div>
+                                <h4 class="font-heading font-bold text-slate-900 text-base">Design Tools</h4>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">Figma</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">Adobe Photoshop</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">Adobe Illustrator</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">Canva Pro</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">UI Wireframing</span>
+                            </div>
+                        </div>
+
+                        <!-- Video Editing Tools -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                                    <i class="fa-solid fa-video text-lg"></i>
+                                </div>
+                                <h4 class="font-heading font-bold text-slate-900 text-base">Video Editing</h4>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">Adobe Premiere Pro</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">CapCut Desktop</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">After Effects</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">Color Grading</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">Audio Editing</span>
+                            </div>
+                        </div>
+
+                        <!-- Marketing Tools -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-10 h-10 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center">
+                                    <i class="fa-solid fa-chart-line text-lg"></i>
+                                </div>
+                                <h4 class="font-heading font-bold text-slate-900 text-base">Marketing Tools</h4>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">Meta Ads Manager</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">Google Analytics</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">SEO Content</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">Copywriting</span>
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs rounded-md font-medium">Social Analytics</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 2: EXPERIENCE & CREDENTIALS PAGE ================= -->
+        <div id="page-experience" class="page-tab-content">
+            
+            <section class="py-12 bg-white border-b border-slate-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-3xl">
+                        <span class="text-xs font-bold text-brand-purple tracking-widest uppercase mb-2 block">Career Journey</span>
+                        <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+                            Experience & Credentials
+                        </h1>
+                        <p class="text-slate-600 text-base sm:text-lg">
+                            A structured overview of my work experience, organizational leadership, event committee engagements, and professional certifications.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+                
+                <!-- A. WORK & INTERNSHIP SECTION -->
+                <section>
+                    <div class="flex items-center space-x-3 mb-8 pb-3 border-b border-slate-200">
+                        <div class="w-10 h-10 rounded-xl bg-blue-100 text-brand-blue flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-heading text-2xl font-bold text-slate-900">Work & Internship</h2>
+                            <p class="text-xs text-slate-500">Professional industry experience and internships</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Work Entry 1 -->
+                        <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-14 h-14 rounded-xl bg-slate-100 border border-slate-200 flex-shrink-0 flex items-center justify-center text-slate-700 font-bold text-xl overflow-hidden">
+                                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=200&auto=format&fit=crop" alt="Company Logo" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <h3 class="font-heading text-xl font-bold text-slate-900">Software Engineering Intern</h3>
+                                        <p class="text-brand-purple font-semibold text-sm">Tech Solutions Indonesia</p>
+                                        <p class="text-slate-500 text-xs mt-1">Jun 2025 - Aug 2025 • Full-time</p>
+                                    </div>
+                                </div>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-brand-blue self-start">
+                                    IT & Web Development
+                                </span>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-slate-100 text-slate-600 text-sm leading-relaxed space-y-2">
+                                <p>• Developed and optimized responsive frontend components using React and Tailwind CSS for the client dashboard portal.</p>
+                                <p>• Collaborated with backend engineers to integrate RESTful API endpoints and resolve cross-browser rendering issues.</p>
+                                <p class="text-slate-900 font-semibold"><i class="fa-solid fa-circle-check text-emerald-500 mr-1.5"></i> Key Achievement: Improved web performance score by 35% and reduced load times across core pages.</p>
+                            </div>
+                        </div>
+
+                        <!-- Work Entry 2 -->
+                        <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-14 h-14 rounded-xl bg-slate-100 border border-slate-200 flex-shrink-0 flex items-center justify-center text-slate-700 font-bold text-xl overflow-hidden">
+                                        <img src="https://images.unsplash.com/photo-1572021335469-31706a17aaef?q=80&w=200&auto=format&fit=crop" alt="Studio Logo" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <h3 class="font-heading text-xl font-bold text-slate-900">UI/UX & Web Designer Intern</h3>
+                                        <p class="text-brand-purple font-semibold text-sm">Creative Digital Studio</p>
+                                        <p class="text-slate-500 text-xs mt-1">Jan 2025 - May 2025 • Part-time</p>
+                                    </div>
+                                </div>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-purple-50 text-brand-purple self-start">
+                                    UI/UX & Design
+                                </span>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-slate-100 text-slate-600 text-sm leading-relaxed space-y-2">
+                                <p>• Conducted user research and designed high-fidelity wireframes, interactive prototypes, and design tokens in Figma.</p>
+                                <p>• Created marketing visual kits, social media promo graphics, and video teasers for brand campaign launches.</p>
+                                <p class="text-slate-900 font-semibold"><i class="fa-solid fa-circle-check text-emerald-500 mr-1.5"></i> Key Achievement: Successfully delivered 4 client design systems with a 95%+ client approval rate.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- B. ORGANIZATION SECTION -->
+                <section>
+                    <div class="flex items-center space-x-3 mb-8 pb-3 border-b border-slate-200">
+                        <div class="w-10 h-10 rounded-xl bg-purple-100 text-brand-purple flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-users text-lg"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-heading text-2xl font-bold text-slate-900">Organization Experience</h2>
+                            <p class="text-xs text-slate-500">Leadership and active student council involvements</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <!-- Org Item 1 -->
+                        <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                                <div class="lg:col-span-7">
+                                    <span class="px-3 py-1 bg-purple-100 text-brand-purple text-xs font-semibold rounded-full mb-2 inline-block">Student Executive Board (BEM)</span>
+                                    <h3 class="font-heading text-xl font-bold text-slate-900 mb-1">Head of Information & Technology Division</h3>
+                                    <p class="text-slate-500 text-xs mb-4">Ciputra University • 2024 - 2025</p>
+                                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                        Led a team of 8 IT and media staff responsible for developing student portals, managing digital registration systems, and running technical operations for university-wide student events.
+                                    </p>
+                                </div>
+                                <div class="lg:col-span-5">
+                                    <!-- Swiper Carousel -->
+                                    <div class="swiper orgSwiper rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop" alt="Team meeting" class="w-full h-48 object-cover">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop" alt="Tech workshop" class="w-full h-48 object-cover">
+                                            </div>
+                                        </div>
+                                        <div class="swiper-button-next"></div>
+                                        <div class="swiper-button-prev"></div>
+                                        <div class="swiper-pagination"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- C. COMMITTEE SECTION -->
+                <section>
+                    <div class="flex items-center space-x-3 mb-8 pb-3 border-b border-slate-200">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-people-group text-lg"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-heading text-2xl font-bold text-slate-900">Committee Experience</h2>
+                            <p class="text-xs text-slate-500">Event execution and project committee roles</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                            <div class="lg:col-span-7">
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-600 text-xs font-semibold rounded-full mb-2 inline-block">Annual Tech Conference</span>
+                                <h3 class="font-heading text-xl font-bold text-slate-900 mb-1">Project Lead & Event Chair</h3>
+                                <p class="text-slate-500 text-xs mb-4">Tech Innovators Summit 2025 • Nov 2025</p>
+                                <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                    Spearheaded a 25-person event committee for a national tech seminar with 1,000+ registered attendees. Managed budget, speaker invitations, live stream production, and post-event reporting.
+                                </p>
+                            </div>
+                            <div class="lg:col-span-5">
+                                <!-- Swiper Carousel -->
+                                <div class="swiper committeeSwiper rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=800&auto=format&fit=crop" alt="Event presentation" class="w-full h-48 object-cover">
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=800&auto=format&fit=crop" alt="Committee team photo" class="w-full h-48 object-cover">
+                                        </div>
+                                    </div>
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-pagination"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- D. CERTIFICATES SECTION -->
+                <section>
+                    <div class="flex items-center space-x-3 mb-8 pb-3 border-b border-slate-200">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-award text-lg"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-heading text-2xl font-bold text-slate-900">Certificates & Licenses</h2>
+                            <p class="text-xs text-slate-500">Verified credentials and professional certifications (Click to view full preview)</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Cert Card 1 -->
+                        <div onclick="openCertificateModal('https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?q=80&w=1000&auto=format&fit=crop', 'Google IT Support Professional Certificate', 'Google / Coursera', '2024')" 
+                             class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all cursor-pointer group">
+                            <div class="h-40 bg-slate-100 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?q=80&w=600&auto=format&fit=crop" alt="Google Certificate" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-semibold text-xs">
+                                    <i class="fa-solid fa-expand text-lg mr-2"></i> Click to Zoom
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-heading font-bold text-slate-900 text-sm line-clamp-1">Google IT Support Professional</h4>
+                                <p class="text-xs text-brand-purple font-semibold mt-1">Google / Coursera</p>
+                                <p class="text-xs text-slate-400 mt-0.5">Issued 2024</p>
+                            </div>
+                        </div>
+
+                        <!-- Cert Card 2 -->
+                        <div onclick="openCertificateModal('https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=1000&auto=format&fit=crop', 'Meta Front-End Developer Specialization', 'Meta / Coursera', '2024')" 
+                             class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all cursor-pointer group">
+                            <div class="h-40 bg-slate-100 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop" alt="Meta Certificate" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-semibold text-xs">
+                                    <i class="fa-solid fa-expand text-lg mr-2"></i> Click to Zoom
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-heading font-bold text-slate-900 text-sm line-clamp-1">Meta Front-End Developer</h4>
+                                <p class="text-xs text-brand-purple font-semibold mt-1">Meta / Coursera</p>
+                                <p class="text-xs text-slate-400 mt-0.5">Issued 2024</p>
+                            </div>
+                        </div>
+
+                        <!-- Cert Card 3 -->
+                        <div onclick="openCertificateModal('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000&auto=format&fit=crop', 'Figma UI/UX Design Masterclass', 'Udemy', '2023')" 
+                             class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all cursor-pointer group">
+                            <div class="h-40 bg-slate-100 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600&auto=format&fit=crop" alt="Figma Certificate" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-semibold text-xs">
+                                    <i class="fa-solid fa-expand text-lg mr-2"></i> Click to Zoom
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-heading font-bold text-slate-900 text-sm line-clamp-1">Figma UI/UX Design Masterclass</h4>
+                                <p class="text-xs text-brand-purple font-semibold mt-1">Udemy</p>
+                                <p class="text-xs text-slate-400 mt-0.5">Issued 2023</p>
+                            </div>
+                        </div>
+
+                        <!-- Cert Card 4 -->
+                        <div onclick="openCertificateModal('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1000&auto=format&fit=crop', 'Certified Digital Marketing Associate', 'HubSpot Academy', '2024')" 
+                             class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all cursor-pointer group">
+                            <div class="h-40 bg-slate-100 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600&auto=format&fit=crop" alt="Marketing Certificate" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-semibold text-xs">
+                                    <i class="fa-solid fa-expand text-lg mr-2"></i> Click to Zoom
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-heading font-bold text-slate-900 text-sm line-clamp-1">Digital Marketing Associate</h4>
+                                <p class="text-xs text-brand-purple font-semibold mt-1">HubSpot Academy</p>
+                                <p class="text-xs text-slate-400 mt-0.5">Issued 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
+        <!-- ================= PAGE 3: PROJECTS PAGE ================= -->
+        <div id="page-projects" class="page-tab-content">
+            
+            <section class="py-12 bg-white border-b border-slate-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-3xl">
+                        <span class="text-xs font-bold text-brand-blue tracking-widest uppercase mb-2 block">Selected Work</span>
+                        <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+                            Projects Portfolio
+                        </h1>
+                        <p class="text-slate-600 text-base sm:text-lg">
+                            Explore my multi-disciplinary work spanning IT & Web Development, UI/UX Design, Video Editing, and Digital Marketing campaigns.
+                        </p>
+                    </div>
+
+                    <!-- Filter Tabs -->
+                    <div class="flex flex-wrap items-center gap-2 mt-8 pt-6 border-t border-slate-100">
+                        <button onclick="filterProjects('all', this)" class="project-filter-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 bg-gradient-brand text-white shadow-md">
+                            All Projects
+                        </button>
+                        <button onclick="filterProjects('it', this)" class="project-filter-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">
+                            IT & Web
+                        </button>
+                        <button onclick="filterProjects('design', this)" class="project-filter-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">
+                            Design Projects
+                        </button>
+                        <button onclick="filterProjects('video', this)" class="project-filter-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">
+                            Video Editing
+                        </button>
+                        <button onclick="filterProjects('marketing', this)" class="project-filter-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 bg-white text-slate-600 border border-slate-200 hover:bg-slate-50">
+                            Digital Marketing
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Grid -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Project 1 (IT) -->
+                    <div data-category="it" class="project-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="h-48 bg-slate-100 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop" alt="EduTech Campus Portal" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full">IT & Web</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-lg text-slate-900 mb-2">EduTech Campus Portal</h3>
+                            <p class="text-slate-600 text-xs sm:text-sm line-clamp-2 mb-4">
+                                Student portal & assignment submission system built with modern React & Tailwind CSS.
+                            </p>
+                            <button onclick="openProjectModal('it-1')" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs transition-colors">
+                                View Case Study <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 (IT) -->
+                    <div data-category="it" class="project-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="h-48 bg-slate-100 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="Smart Inventory Dashboard" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full">IT & Web</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-lg text-slate-900 mb-2">Smart Inventory Dashboard</h3>
+                            <p class="text-slate-600 text-xs sm:text-sm line-clamp-2 mb-4">
+                                Real-time warehouse asset tracking system featuring automated reporting charts.
+                            </p>
+                            <button onclick="openProjectModal('it-2')" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs transition-colors">
+                                View Case Study <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 (Design) -->
+                    <div data-category="design" class="project-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="h-48 bg-slate-100 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=800&auto=format&fit=crop" alt="HealthCare Mobile App" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 px-3 py-1 bg-purple-600 text-white text-xs font-bold rounded-full">UI/UX Design</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-lg text-slate-900 mb-2">HealthCare Mobile App Redesign</h3>
+                            <p class="text-slate-600 text-xs sm:text-sm line-clamp-2 mb-4">
+                                Patient appointment booking & consultation UI prototype created in Figma.
+                            </p>
+                            <button onclick="openProjectModal('design-1')" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs transition-colors">
+                                View Case Study <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 (Design) -->
+                    <div data-category="design" class="project-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="h-48 bg-slate-100 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=800&auto=format&fit=crop" alt="Corporate Brand System" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 px-3 py-1 bg-purple-600 text-white text-xs font-bold rounded-full">Branding & Graphic</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-lg text-slate-900 mb-2">Corporate Brand Identity System</h3>
+                            <p class="text-slate-600 text-xs sm:text-sm line-clamp-2 mb-4">
+                                Comprehensive visual brand guidelines, typography rules, and logo suite.
+                            </p>
+                            <button onclick="openProjectModal('design-2')" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs transition-colors">
+                                View Case Study <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 5 (Video) -->
+                    <div data-category="video" class="project-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="h-48 bg-slate-100 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800&auto=format&fit=crop" alt="Tech Summit Aftermovie" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 px-3 py-1 bg-indigo-600 text-white text-xs font-bold rounded-full">Video Editing</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-lg text-slate-900 mb-2">Annual Tech Summit Aftermovie</h3>
+                            <p class="text-slate-600 text-xs sm:text-sm line-clamp-2 mb-4">
+                                High-energy event reel edited in Premiere Pro with custom motion graphics.
+                            </p>
+                            <button onclick="openProjectModal('video-1')" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs transition-colors">
+                                View Case Study <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 (Marketing) -->
+                    <div data-category="marketing" class="project-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="h-48 bg-slate-100 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" alt="Digital Marketing Campaign" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 px-3 py-1 bg-rose-600 text-white text-xs font-bold rounded-full">Digital Marketing</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-lg text-slate-900 mb-2">National Student Competition Campaign</h3>
+                            <p class="text-slate-600 text-xs sm:text-sm line-clamp-2 mb-4">
+                                Multi-channel social media ad campaign achieving 140% registration targets.
+                            </p>
+                            <button onclick="openProjectModal('marketing-1')" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs transition-colors">
+                                View Case Study <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center justify-center space-y-6">
+                <!-- Social Channels -->
+                <div class="flex items-center space-x-4">
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-gradient-brand flex items-center justify-center text-slate-300 hover:text-white transition-all duration-200">
+                        <i class="fa-brands fa-linkedin-in text-base"></i>
+                    </a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-gradient-brand flex items-center justify-center text-slate-300 hover:text-white transition-all duration-200">
+                        <i class="fa-brands fa-github text-base"></i>
+                    </a>
+                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-gradient-brand flex items-center justify-center text-slate-300 hover:text-white transition-all duration-200">
+                        <i class="fa-brands fa-instagram text-base"></i>
+                    </a>
+                    <a href="mailto:chelsea@example.com" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-gradient-brand flex items-center justify-center text-slate-300 hover:text-white transition-all duration-200">
+                        <i class="fa-solid fa-envelope text-base"></i>
+                    </a>
+                </div>
+
+                <!-- Copyright -->
+                <p class="text-xs text-slate-400">
+                    &copy; 2026 Graciella Chelsea Lu. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALS & TOAST NOTIFICATION -->
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative animate-fade-in">
+            <button onclick="closeContactModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="font-heading text-2xl font-bold text-slate-900 mb-2">Get in Touch</h3>
+            <p class="text-slate-600 text-sm mb-6">Fill out the form below or reach out directly to discuss potential opportunities.</p>
+            
+            <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Your Name</label>
+                    <input type="text" required placeholder="John Doe" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Your Email</label>
+                    <input type="email" required placeholder="john@example.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Message</label>
+                    <textarea rows="4" required placeholder="How can I help you?" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent text-sm resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full py-3 rounded-xl bg-gradient-brand text-white font-bold shadow-md hover:shadow-lg transition-all text-sm">
+                    <i class="fa-solid fa-paper-plane mr-2"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Certificate Lightbox Modal -->
+    <div id="cert-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/80 backdrop-blur-md p-4">
+        <div class="relative max-w-4xl w-full bg-white rounded-2xl overflow-hidden shadow-2xl">
+            <button onclick="closeCertificateModal()" class="absolute top-4 right-4 z-10 text-white bg-slate-900/60 hover:bg-slate-900 w-9 h-9 flex items-center justify-center rounded-full transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="p-2 sm:p-4 bg-slate-950 flex items-center justify-center min-h-[300px] max-h-[75vh]">
+                <img id="cert-modal-img" src="" alt="Certificate Full Preview" class="max-h-[70vh] w-auto object-contain rounded-lg">
+            </div>
+            <div class="p-4 sm:p-6 bg-white border-t border-slate-200">
+                <h3 id="cert-modal-title" class="font-heading text-xl font-bold text-slate-900"></h3>
+                <p id="cert-modal-meta" class="text-sm text-slate-600 mt-1"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Details Modal -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/70 backdrop-blur-sm p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-3xl w-full my-8 p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 w-9 h-9 flex items-center justify-center rounded-full bg-slate-100 transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="project-modal-content">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center space-x-3 border border-slate-700">
+        <div id="toast-icon" class="text-emerald-400">
+            <i class="fa-solid fa-circle-check text-lg"></i>
+        </div>
+        <span id="toast-message" class="text-sm font-semibold">Notification message</span>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Main JavaScript Application Logic -->
+    <script>
+        
+        // --- PAGE SWITCHING LOGIC ---
+        function switchPage(pageId) {
+            // Hide all tab pages
+            const pages = document.querySelectorAll('.page-tab-content');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show target page
+            const targetPage = document.getElementById(`page-${pageId}`);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // Update Desktop Nav Styling
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => {
+                btn.classList.remove('bg-white', 'text-slate-900', 'shadow-sm', 'border', 'border-slate-200');
+                btn.classList.add('text-slate-600');
+            });
+            const activeNav = document.getElementById(`nav-${pageId}`);
+            if (activeNav) {
+                activeNav.classList.remove('text-slate-600');
+                activeNav.classList.add('bg-white', 'text-slate-900', 'shadow-sm', 'border', 'border-slate-200');
+            }
+
+            // Update Mobile Nav Styling
+            const mobileNavBtns = document.querySelectorAll('.mobile-nav-btn');
+            mobileNavBtns.forEach(btn => {
+                btn.classList.remove('bg-slate-100', 'text-brand-purple');
+            });
+            const activeMobileNav = document.getElementById(`mobile-nav-${pageId}`);
+            if (activeMobileNav) {
+                activeMobileNav.classList.add('bg-slate-100', 'text-brand-purple');
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Make switchPage globally available
+        window.switchPage = switchPage;
+
+        // --- MOBILE MENU TOGGLE ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu) {
+                const isHidden = menu.classList.contains('hidden');
+                if (isHidden) {
+                    menu.classList.remove('hidden');
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                } else {
+                    menu.classList.add('hidden');
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        }
+        window.toggleMobileMenu = toggleMobileMenu;
+
+        // --- TOAST NOTIFICATION ---
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            if (!toast || !toastMsg || !toastIcon) return;
+
+            toastMsg.textContent = message;
+            if (isError) {
+                toastIcon.className = 'text-rose-400';
+                toastIcon.innerHTML = '<i class="fa-solid fa-circle-exclamation text-lg"></i>';
+            } else {
+                toastIcon.className = 'text-emerald-400';
+                toastIcon.innerHTML = '<i class="fa-solid fa-circle-check text-lg"></i>';
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+
+        // --- CV DOWNLOAD ACTION ---
+        function triggerDownloadCV() {
+            showToast('Downloading Graciella Chelsea Lu\'s CV...');
+        }
+        window.triggerDownloadCV = triggerDownloadCV;
+
+        // --- CONTACT MODAL HANDLERS ---
+        function openContactModal() {
+            const modal = document.getElementById('contact-modal');
+            if (modal) modal.classList.remove('hidden');
+        }
+        window.openContactModal = openContactModal;
+
+        function closeContactModal() {
+            const modal = document.getElementById('contact-modal');
+            if (modal) modal.classList.add('hidden');
+        }
+        window.closeContactModal = closeContactModal;
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            closeContactModal();
+            showToast('Thank you! Your message has been sent successfully.');
+            e.target.reset();
+        }
+        window.handleContactSubmit = handleContactSubmit;
+
+        // --- CERTIFICATE LIGHTBOX MODAL ---
+        function openCertificateModal(imgSrc, title, issuer, date) {
+            const modal = document.getElementById('cert-modal');
+            const img = document.getElementById('cert-modal-img');
+            const titleEl = document.getElementById('cert-modal-title');
+            const metaEl = document.getElementById('cert-modal-meta');
+
+            if (modal && img && titleEl && metaEl) {
+                img.src = imgSrc;
+                titleEl.textContent = title;
+                metaEl.textContent = `${issuer} • Issued ${date}`;
+                modal.classList.remove('hidden');
+            }
+        }
+        window.openCertificateModal = openCertificateModal;
+
+        function closeCertificateModal() {
+            const modal = document.getElementById('cert-modal');
+            if (modal) modal.classList.add('hidden');
+        }
+        window.closeCertificateModal = closeCertificateModal;
+
+        // --- PROJECTS FILTER LOGIC ---
+        function filterProjects(category, btnElement) {
+            const tabs = document.querySelectorAll('.project-filter-btn');
+            tabs.forEach(tab => {
+                tab.classList.remove('bg-gradient-brand', 'text-white', 'shadow-md');
+                tab.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+            });
+
+            if (btnElement) {
+                btnElement.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+                btnElement.classList.add('bg-gradient-brand', 'text-white', 'shadow-md');
+            }
+
+            const items = document.querySelectorAll('.project-card');
+            items.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+                if (category === 'all' || itemCategory === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        window.filterProjects = filterProjects;
+
+        // --- PROJECT DETAILS MODAL DATA ---
+        const projectData = {
+            'it-1': {
+                title: 'EduTech Campus Portal & Learning Management System',
+                category: 'IT & Web Development',
+                image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000&auto=format&fit=crop',
+                overview: 'A high-performance student portal and assignment submission system built with modern web technologies, serving over 2,000 active university users.',
+                role: 'Lead Frontend Developer & System Architect',
+                impact: 'Reduced assignment load times by 45% and enhanced mobile usability score to 98/100.',
+                tools: ['React', 'Tailwind CSS', 'Node.js', 'MySQL', 'Git'],
+                link: '#'
+            },
+            'it-2': {
+                title: 'Smart Inventory & Asset Management Dashboard',
+                category: 'IT & Web Development',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop',
+                overview: 'An intuitive admin dashboard for real-time warehouse inventory tracking, data visualization, and reporting.',
+                role: 'Full Stack Developer',
+                impact: 'Automated monthly inventory audits, saving up to 15 hours of manual data entry per week.',
+                tools: ['JavaScript', 'Tailwind CSS', 'Chart.js', 'REST API'],
+                link: '#'
+            },
+            'design-1': {
+                title: 'HealthCare Mobile App UI/UX Redesign',
+                category: 'Design Project',
+                image: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=1000&auto=format&fit=crop',
+                overview: 'Complete end-to-end UX research and UI design for a patient telemedicine and appointment booking application.',
+                role: 'UI/UX Designer',
+                impact: 'Achieved 92% positive rating in usability testing with 30 target user participants.',
+                tools: ['Figma', 'Adobe Illustrator', 'Wireframing', 'Prototyping'],
+                link: '#'
+            },
+            'design-2': {
+                title: 'Corporate Brand Identity & Design System',
+                category: 'Design Project',
+                image: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=1000&auto=format&fit=crop',
+                overview: 'Developed comprehensive brand guidelines, logo variants, color palettes, and typography rules for a fintech startup.',
+                role: 'Brand Designer',
+                impact: 'Established cohesive brand presence across web, mobile, and print assets.',
+                tools: ['Figma', 'Adobe Photoshop', 'Branding'],
+                link: '#'
+            },
+            'video-1': {
+                title: 'University Annual Tech Summit Aftermovie & Teasers',
+                category: 'Video Editing',
+                image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1000&auto=format&fit=crop',
+                overview: 'Dynamic highlight video and social media teaser reels covering a 3-day tech event with over 1,000 attendees.',
+                role: 'Video Editor & Colorist',
+                impact: 'Gained over 25,000 combined views across Instagram Reels and YouTube.',
+                tools: ['Premiere Pro', 'After Effects', 'CapCut', 'Sound Design'],
+                link: '#'
+            },
+            'marketing-1': {
+                title: 'National Student Competition Digital Campaign',
+                category: 'Digital Marketing',
+                image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop',
+                overview: 'Integrated multi-channel marketing campaign across Instagram, LinkedIn, and Meta Ads to drive event registration.',
+                role: 'Marketing Lead',
+                impact: 'Exceeded target registrations by 140% with a 3.8x ROI on paid ad spend.',
+                tools: ['Meta Ads', 'Google Analytics', 'Copywriting', 'SEO'],
+                link: '#'
+            }
+        };
+
+        function openProjectModal(projectId) {
+            const data = projectData[projectId];
+            if (!data) return;
+
+            const modal = document.getElementById('project-modal');
+            const container = document.getElementById('project-modal-content');
+
+            if (!modal || !container) return;
+
+            container.innerHTML = `
+                <span class="inline-block px-3 py-1 bg-purple-100 text-brand-purple text-xs font-semibold rounded-full mb-3">${data.category}</span>
+                <h2 class="font-heading text-2xl sm:text-3xl font-bold text-slate-900 mb-4">${data.title}</h2>
+                
+                <div class="rounded-xl overflow-hidden mb-6 bg-slate-100 max-h-72">
+                    <img src="${data.image}" alt="${data.title}" class="w-full h-full object-cover">
+                </div>
+                
+                <div class="space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed mb-6">
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-1">Overview</h4>
+                        <p>${data.overview}</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-1">Role & Responsibility</h4>
+                        <p>${data.role}</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-1">Key Impact / Result</h4>
+                        <p class="text-emerald-700 font-semibold">${data.impact}</p>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h4 class="font-bold text-slate-900 text-xs uppercase tracking-wider mb-2">Technologies & Tools Used</h4>
+                    <div class="flex flex-wrap gap-2">
+                        ${data.tools.map(tool => `<span class="px-3 py-1 bg-slate-100 text-slate-700 text-xs rounded-lg font-medium">${tool}</span>`).join('')}
+                    </div>
+                </div>
+
+                <div class="flex justify-end pt-4 border-t border-slate-100">
+                    <button onclick="closeProjectModal()" class="px-5 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 font-semibold text-sm transition-colors mr-2">
+                        Close
+                    </button>
+                    <a href="${data.link}" target="_blank" class="px-6 py-2.5 rounded-xl bg-gradient-brand text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all inline-flex items-center">
+                        <i class="fa-solid fa-arrow-up-right-from-square mr-2"></i> View Live Demo
+                    </a>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+        }
+        window.openProjectModal = openProjectModal;
+
+        function closeProjectModal() {
+            const modal = document.getElementById('project-modal');
+            if (modal) modal.classList.add('hidden');
+        }
+        window.closeProjectModal = closeProjectModal;
+
+        // --- INITIALIZE SWIPER CAROUSELS ON LOAD ---
+        window.addEventListener('DOMContentLoaded', () => {
+            if (typeof Swiper !== 'undefined') {
+                new Swiper('.orgSwiper', {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    loop: true,
+                    pagination: { el: '.swiper-pagination', clickable: true },
+                    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                });
+
+                new Swiper('.committeeSwiper', {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    loop: true,
+                    pagination: { el: '.swiper-pagination', clickable: true },
+                    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                });
+            }
+
+            switchPage('home');
+        });
+    </script>
+</body>
+</html>
