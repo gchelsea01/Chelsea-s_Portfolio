@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+/* ===== Custom Theme (Tailwind v4) ===== */
+@theme {
+  --color-brand-blue: #8B5CF6;
+  --color-brand-purple: #A78BFA;
+  --color-brand-dark: #0F172A;
+  --color-brand-slate: #F8FAFC;
+  --color-brand-lightSlate: #F1F5F9;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* ===== Base Styles ===== */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #F8FAFC;
+  color: #0F172A;
+}
+
+.font-heading {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== Solid Soft Purple Theme ===== */
+.text-gradient {
+  color: #8B5CF6;
+}
+
+.bg-gradient-brand {
+  background-color: #8B5CF6;
+}
+
+.border-gradient {
+  border-color: #8B5CF6;
+}
+
+/* ===== Custom Swiper Styling ===== */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #FFFFFF !important;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50%;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 14px !important;
+  font-weight: bold;
+}
+
+.swiper-pagination-bullet-active {
+  background: #8B5CF6 !important;
+  width: 20px !important;
+  border-radius: 6px !important;
+}
+
+/* ===== Glassmorphism Effect ===== */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* ===== Selection Styling ===== */
+::selection {
+  background-color: rgb(233 213 255);
+  color: rgb(88 28 135);
+}

@@ -1,0 +1,102 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-40 w-full glass-panel border-b border-slate-200/80 shadow-sm transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+            <!-- Logo -->
+            <a href="/" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-brand flex items-center justify-center text-white font-heading font-extrabold text-base shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
+                    GCL
+                </div>
+                <span class="font-heading font-extrabold text-xl sm:text-2xl tracking-tight text-slate-900">
+                    Graciella Chelsea Lu<span class="text-gradient">.</span>
+                </span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-2">
+                <a href="/" id="nav-home"
+                   class:list={[
+                     "nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200",
+                     currentPath === "/" ? "bg-white text-slate-900 shadow-sm border border-slate-200" : "text-slate-600 hover:text-slate-900"
+                   ]}>
+                    Home
+                </a>
+                <a href="/experience" id="nav-experience"
+                   class:list={[
+                     "nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200",
+                     currentPath === "/experience" || currentPath === "/experience/" ? "bg-white text-slate-900 shadow-sm border border-slate-200" : "text-slate-600 hover:text-slate-900"
+                   ]}>
+                    Experience
+                </a>
+                <a href="/projects" id="nav-projects"
+                   class:list={[
+                     "nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200",
+                     currentPath === "/projects" || currentPath === "/projects/" ? "bg-white text-slate-900 shadow-sm border border-slate-200" : "text-slate-600 hover:text-slate-900"
+                   ]}>
+                    Projects
+                </a>
+            </nav>
+
+            <!-- Mobile Hamburger Button -->
+            <div class="flex md:hidden items-center space-x-2">
+                <button id="mobile-menu-btn" class="p-2.5 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 bg-white/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-3">
+        <nav class="flex flex-col space-y-1">
+            <a href="/" id="mobile-nav-home"
+               class:list={[
+                 "mobile-nav-btn text-left px-4 py-3 rounded-xl font-semibold hover:bg-slate-100",
+                 currentPath === "/" ? "bg-slate-100 text-brand-purple" : "text-slate-700"
+               ]}>
+                <i class="fa-solid fa-house w-6 text-brand-blue"></i> Home
+            </a>
+            <a href="/experience" id="mobile-nav-experience"
+               class:list={[
+                 "mobile-nav-btn text-left px-4 py-3 rounded-xl font-semibold hover:bg-slate-100",
+                 currentPath === "/experience" || currentPath === "/experience/" ? "bg-slate-100 text-brand-purple" : "text-slate-700"
+               ]}>
+                <i class="fa-solid fa-briefcase w-6 text-brand-purple"></i> Experience & Credentials
+            </a>
+            <a href="/projects" id="mobile-nav-projects"
+               class:list={[
+                 "mobile-nav-btn text-left px-4 py-3 rounded-xl font-semibold hover:bg-slate-100",
+                 currentPath === "/projects" || currentPath === "/projects/" ? "bg-slate-100 text-brand-purple" : "text-slate-700"
+               ]}>
+                <i class="fa-solid fa-folder-open w-6 text-brand-blue"></i> Projects Portfolio
+            </a>
+        </nav>
+    </div>
+</header>
+
+<script>
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+        if (menu && icon) {
+            const isHidden = menu.classList.contains('hidden');
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+    }
+
+    const btn = document.getElementById('mobile-menu-btn');
+    if (btn) {
+        btn.addEventListener('click', toggleMobileMenu);
+    }
+</script>

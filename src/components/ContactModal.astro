@@ -1,0 +1,85 @@
+---
+---
+
+<!-- Contact Modal -->
+<div id="contact-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
+        <button id="close-contact-modal" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h3 class="font-heading text-2xl font-bold text-slate-900 mb-2">Get in Touch</h3>
+        <p class="text-slate-600 text-sm mb-6">Fill out the form below or reach out directly to discuss potential opportunities.</p>
+
+        <form id="contact-form" class="space-y-4">
+            <div>
+                <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Your Name</label>
+                <input type="text" required placeholder="John Doe" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent text-sm">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Your Email</label>
+                <input type="email" required placeholder="john@example.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent text-sm">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Message</label>
+                <textarea rows="4" required placeholder="How can I help you?" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent text-sm resize-none"></textarea>
+            </div>
+            <button type="submit" class="w-full py-3 rounded-xl bg-gradient-brand text-white font-bold shadow-md hover:shadow-lg transition-all text-sm">
+                <i class="fa-solid fa-paper-plane mr-2"></i> Send Message
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Open contact modal
+    document.getElementById('open-contact-btn')?.addEventListener('click', () => {
+        document.getElementById('contact-modal')?.classList.remove('hidden');
+    });
+
+    // Close contact modal
+    document.getElementById('close-contact-modal')?.addEventListener('click', () => {
+        document.getElementById('contact-modal')?.classList.add('hidden');
+    });
+
+    // Handle contact form submit
+    document.getElementById('contact-form')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        document.getElementById('contact-modal')?.classList.add('hidden');
+
+        // Show toast
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toast-message');
+        const toastIcon = document.getElementById('toast-icon');
+        if (toast && toastMsg && toastIcon) {
+            toastMsg.textContent = 'Thank you! Your message has been sent successfully.';
+            toastIcon.className = 'text-emerald-400';
+            toastIcon.innerHTML = '<i class="fa-solid fa-circle-check text-lg"></i>';
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+
+        (e.target as HTMLFormElement).reset();
+    });
+
+    // Download CV
+    document.getElementById('download-cv-btn')?.addEventListener('click', () => {
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toast-message');
+        const toastIcon = document.getElementById('toast-icon');
+        if (toast && toastMsg && toastIcon) {
+            toastMsg.textContent = "Downloading Graciella Chelsea Lu's CV...";
+            toastIcon.className = 'text-emerald-400';
+            toastIcon.innerHTML = '<i class="fa-solid fa-circle-check text-lg"></i>';
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+    });
+</script>
