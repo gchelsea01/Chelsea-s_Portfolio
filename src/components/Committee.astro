@@ -41,3 +41,20 @@
         </div>
     </div>
 </section>
+
+<script>
+    import Swiper from 'swiper';
+    import { Navigation, Pagination } from 'swiper/modules';
+    import 'swiper/css';
+    import 'swiper/css/navigation';
+    import 'swiper/css/pagination';
+
+    new Swiper('.committeeSwiper', {
+        modules: [Navigation, Pagination],
+        slidesPerView: 1,
+        spaceBetween: 10,
+        loop: true,
+        pagination: { el: '.committeeSwiper .swiper-pagination', clickable: true },
+        navigation: { nextEl: '.committeeSwiper .swiper-button-next', prevEl: '.committeeSwiper .swiper-button-prev' },
+    });
+</script>
