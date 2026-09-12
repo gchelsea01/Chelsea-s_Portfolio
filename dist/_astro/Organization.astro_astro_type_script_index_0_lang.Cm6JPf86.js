@@ -1,0 +1,1 @@
+import{n as e,r as t,t as n}from"./pagination.CL0kJHfK.js";new t(`.orgSwiper`,{modules:[e,n],slidesPerView:1,spaceBetween:10,loop:!0,pagination:{el:`.orgSwiper .swiper-pagination`,clickable:!0},navigation:{nextEl:`.orgSwiper .swiper-button-next`,prevEl:`.orgSwiper .swiper-button-prev`}});

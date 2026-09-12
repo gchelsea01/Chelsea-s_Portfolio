@@ -1,0 +1,1 @@
+import{n as e,r as t,t as n}from"./pagination.CL0kJHfK.js";new t(`.committeeSwiper`,{modules:[e,n],slidesPerView:1,spaceBetween:10,loop:!0,pagination:{el:`.committeeSwiper .swiper-pagination`,clickable:!0},navigation:{nextEl:`.committeeSwiper .swiper-button-next`,prevEl:`.committeeSwiper .swiper-button-prev`}});
