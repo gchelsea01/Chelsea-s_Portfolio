@@ -96,12 +96,33 @@
       .ic:hover {
         border-color: var(--accent);
       }
-      .item p,
-      .body p {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+      html {
+        overflow-y: scroll;
+        scrollbar-gutter: stable;
+      }
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(28px);
+        }
+      }
+      .page.in .wrap > :not(.exp):not(.grid):not(.certs) {
+        animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+      }
+      .page.in .wrap > :nth-child(2) {
+        animation-delay: 0.06s;
+      }
+      .page.in .wrap > :nth-child(3) {
+        animation-delay: 0.12s;
+      }
+      .page.in .wrap > :nth-child(4) {
+        animation-delay: 0.18s;
+      }
+      .page.in .exp > *,
+      .page.in .grid > *,
+      .page.in .certs > * {
+        animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+        animation-delay: calc(var(--n, 0) * 70ms + 0.2s);
       }
       .see {
         align-self: flex-start;
@@ -728,8 +749,8 @@
       /* certs */
       .certs {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: 16px;
+        grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+        gap: 20px;
       }
       .cert {
         background: var(--card);
@@ -879,9 +900,9 @@
             </p>
             <div class="cta">
               <a class="btn p" href="#/projects">Lihat project</a
-              ><a class="btn g" href="#/experience">Pengalaman saya</a>
-              <!-- <a class="btn g" id="lp">Lihat Portfolio</a
-              ><a class="btn g" id="lc">Lihat CV</a> -->
+              ><a class="btn g" href="#/experience">Pengalaman saya</a
+              ><a class="btn g" id="lp">Lihat Portfolio</a
+              ><a class="btn g" id="lc">Lihat CV</a>
             </div>
           </div>
         </div>
@@ -902,7 +923,7 @@
             </p>
             <p>
               Di luar coding, saya menikmati merancang UI/UX dan mengedit video.
-              Saya juga terbuka untuk peran nonteknis seperti administrasi.
+              Saya juga terbuka untuk peran non-teknis seperti administrasi.
             </p>
             <div class="grp">
               <h3>Technologies</h3>
@@ -1176,7 +1197,7 @@
           "Zeneat App",
           "UI/UX Design",
           "Aplikasi kesehatan mental: jurnal teks dan voice-to-text, AI Wawasan untuk pola emosi, indikator burnout, dan chat dengan konselor.",
-          ["Figma"],
+          ["Figma", "UI/UX"],
         ],
         [
           "it",
@@ -1190,21 +1211,21 @@
           "Aether",
           "Application Developer",
           "Aplikasi mahasiswa untuk mengelola tugas dengan Task Manager, Focus Timer bermusik tenang, dan Block Game anti-stres.",
-          ["Kotlin"],
+          ["Kotlin", "PostgreSQL"],
         ],
         [
           "it",
           "EcoPlate",
           "UI/UX Design",
           "Platform penghubung donatur makanan dan yayasan untuk mengurangi food waste, lengkap dengan donasi, chat, dan peringkat.",
-          ["Figma"],
+          ["Figma", "UI/UX"],
         ],
         [
           "it",
           "Mahreen Indonesia Hub",
           "UI/UX Design",
           "Website agency yang dirancang modern dan mudah dipahami agar menarik perhatian generasi masa kini.",
-          ["Figma"],
+          ["Figma", "Web design"],
         ],
         [
           "it",
@@ -1277,11 +1298,15 @@
         `<div class="ph">${IMG[k] ? `<img src="${IMG[k]}" alt="">` : "<span>Foto</span>"}</div>`;
       const E = (i) => {
         const [k, t, d, y] = EXP[i];
-        return `<article class="item" data-k="${k}" style="--c:var(${CAT[k].c})"><div class="meta">${y}</div><div><span class="tag">${CAT[k].n}</span><h3>${t}</h3><p>${d}</p><button class="see" data-t="e" data-i="${i}">See detail</button></div></article>`;
+        return `<article class="item" data-k="${k}" style="--c:var(${CAT[k].c})"><div class="meta">${y}</div><div><span class="tag">${CAT[k].n}</span><h3>${t}</h3><p>${first(d)}</p><button class="see" data-t="e" data-i="${i}">See detail</button></div></article>`;
       };
       const P = (i) => {
         const [k, t, r, d, st] = PRJ[i];
-        return `<article class="card ${k === "video" ? "soon" : ""}" data-k="${k}" style="--c:var(${CAT[k].c})"><div class="thumb"><em>${CAT[k].n}</em><span>${k === "video" ? "▶" : t[0]}</span></div><div class="body"><small>${r}</small><h3>${t}</h3><p>${d}</p><div class="stack">${st.map((x) => `<i>${x}</i>`).join("")}</div><button class="see" data-t="p" data-i="${i}">See detail</button></div></article>`;
+        return `<article class="card ${k === "video" ? "soon" : ""}" data-k="${k}" style="--c:var(${CAT[k].c})"><div class="thumb"><em>${CAT[k].n}</em><span>${k === "video" ? "▶" : t[0]}</span></div><div class="body"><small>${r}</small><h3>${t}</h3><p>${first(d)}</p><div class="stack">${st.map((x) => `<i>${x}</i>`).join("")}</div><button class="see" data-t="p" data-i="${i}">See detail</button></div></article>`;
+      };
+      const first = (d) => {
+        const m = d.match(/^.*?[.!?](?=\s|$)/);
+        return m ? m[0] : d;
       };
       const all = (n) => [...Array(n).keys()];
       $("expH").innerHTML = [5, 0, 3].map((i) => E(i)).join("");
@@ -1330,11 +1355,24 @@
         if (f && matchMedia("(hover:none)").matches) f.classList.toggle("on");
       });
 
-      const LINKS = {
-        portfolio: "",
-        cv: "",
-      }; /* isi dengan link portfolio dan CV Anda */
-      
+      // const LINKS = {
+      //   portfolio: "",
+      //   cv: "",
+      // }; /* isi dengan link portfolio dan CV Anda */
+      // [
+      //   ["lp", "portfolio"],
+      //   ["lc", "cv"],
+      // ].forEach(([id, k]) => {
+      //   const a = $(id);
+      //   if (LINKS[k]) {
+      //     a.href = LINKS[k];
+      //     a.target = "_blank";
+      //     a.rel = "noopener";
+      //   } else {
+      //     a.title = "Link belum diisi";
+      //     a.setAttribute("aria-disabled", "true");
+      //   }
+      // });
       const root = document.documentElement;
       function theme(t) {
         root.dataset.theme = t;
@@ -1370,6 +1408,17 @@
         document
           .querySelectorAll(".page")
           .forEach((e) => (e.hidden = e.dataset.p !== pg));
+        const cp = document.querySelector(`.page[data-p="${pg}"]`);
+        cp.classList.remove("in");
+        void cp.offsetWidth;
+        cp.classList.add("in");
+        document
+          .querySelectorAll(".exp,.grid,.certs")
+          .forEach((c) =>
+            [...c.children].forEach((x, i) =>
+              x.style.setProperty("--n", Math.min(i, 8)),
+            ),
+          );
         const cur = p === "about" ? "about" : pg;
         document
           .querySelectorAll("nav ul a")
