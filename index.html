@@ -1,63 +1,178 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Graciella Chelsea Lu — Portfolio</title>
-<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
-<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/responsive.css">
-</head>
-<body data-base="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Graciella Chelsea Lu — Portfolio</title>
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t) document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body data-base="">
+    <nav>
+      <div class="wrap">
+        <a class="logo" href="index.html">chelsea<i>.</i></a>
+        <ul id="menu">
+          <li><a data-p="home" href="index.html">Home</a></li>
+          <li>
+            <a data-p="experience" href="pages/experience.html">Experience</a>
+          </li>
+          <li><a data-p="projects" href="pages/projects.html">Projects</a></li>
+          <li>
+            <a data-p="certificates" href="pages/certificates.html"
+              >Certificates</a
+            >
+          </li>
+        </ul>
+        <div class="r">
+          <button
+            class="ic"
+            id="th"
+            aria-label="Ganti mode terang/gelap"
+          ></button
+          ><button
+            class="ic bg"
+            id="bg"
+            aria-label="Buka menu"
+            aria-expanded="false"
+            aria-controls="menu"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
 
-<nav><div class="wrap">
-  <a class="logo" href="index.html">chelsea<i>.</i></a>
-  <ul id="menu">
-    <li><a data-p="home" href="index.html">Home</a></li>
-    <li><a data-p="experience" href="pages/experience.html">Experience</a></li>
-    <li><a data-p="projects" href="pages/projects.html">Projects</a></li>
-    <li><a data-p="certificates" href="pages/certificates.html">Certificates</a></li>
-  </ul>
-  <div class="r"><button class="ic" id="th" aria-label="Ganti mode terang/gelap"></button><button class="ic bg" id="bg" aria-label="Buka menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button></div>
-</div></nav>
+    <main class="page" data-p="home">
+      <header class="hero" id="top">
+        <div class="wrap">
+          <div>
+            <h1>Graciella<span>Chelsea Lu</span></h1>
+            <p class="lead">
+              Mahasiswa Informatika yang merancang pengalaman digital yang rapi,
+              nyaman dipakai, dan dibangun dengan kode yang bersih.
+            </p>
+            <div class="cta">
+              <a class="btn p" href="pages/projects.html">Lihat project</a
+              ><a class="btn g" href="pages/experience.html">Pengalaman saya</a
+              ><a class="btn g" id="lp">Lihat Portfolio</a
+              ><a class="btn g" id="lc">Lihat CV</a>
+            </div>
+          </div>
+        </div>
+      </header>
 
-<main class="page" data-p="home">
-<header class="hero" id="top"><div class="wrap">
-  <div>
-    <h1>Graciella<span>Chelsea Lu</span></h1>
-    <p class="lead">Mahasiswa Informatika yang merancang pengalaman digital yang rapi, nyaman dipakai, dan dibangun dengan kode yang bersih.</p>
-    <div class="cta"><a class="btn p" href="pages/projects.html">Lihat project</a><a class="btn g" href="pages/experience.html">Pengalaman saya</a><a class="btn g" id="lp">Lihat Portfolio</a><a class="btn g" id="lc">Lihat CV</a></div>
-  </div>
-</div></header>
+      <section class="about" id="about">
+        <div class="wrap">
+          <div>
+            <h2>Tentang saya</h2>
+            <p class="sub" style="margin: 0">Berbasis di Surabaya.</p>
+          </div>
+          <div>
+            <p>
+              Saya mahasiswa Informatika di Universitas Ciputra dengan
+              konsentrasi Full Stack Application Development. Saya terbiasa
+              bekerja dalam tim, mengatur administrasi kepanitiaan, dan
+              beradaptasi cepat di lingkungan baru.
+            </p>
+            <p>
+              Di luar coding, saya menikmati merancang UI/UX dan mengedit video.
+              Saya juga terbuka untuk peran non-teknis seperti administrasi.
+            </p>
+            <div class="grp">
+              <h3>Technologies</h3>
+              <div class="chips">
+                <span class="chip t">HTML</span><span class="chip t">CSS</span
+                ><span class="chip t">Tailwind</span
+                ><span class="chip t">TypeScript</span
+                ><span class="chip t">Java</span
+                ><span class="chip t">Kotlin</span
+                ><span class="chip t">Swift</span
+                ><span class="chip t">Python</span
+                ><span class="chip t">Laravel</span
+                ><span class="chip t">Express JS</span
+                ><span class="chip t">MySQL</span
+                ><span class="chip t">Firebase</span>
+              </div>
+            </div>
+            <div class="grp">
+              <h3>Tools &amp; soft skills</h3>
+              <div class="chips">
+                <span class="chip">Figma</span><span class="chip">Canva</span
+                ><span class="chip">CapCut</span
+                ><span class="chip">Google Workspace</span
+                ><span class="chip">Teamwork</span
+                ><span class="chip">Organized</span
+                ><span class="chip">Active listening</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<section class="about" id="about"><div class="wrap">
-  <div><h2>Tentang saya</h2><p class="sub" style="margin:0">Berbasis di Surabaya.</p></div>
-  <div>
-    <p>Saya mahasiswa Informatika di Universitas Ciputra dengan konsentrasi Full Stack Application Development. Saya terbiasa bekerja dalam tim, mengatur administrasi kepanitiaan, dan beradaptasi cepat di lingkungan baru.</p>
-    <p>Di luar coding, saya menikmati merancang UI/UX dan mengedit video. Saya juga terbuka untuk peran non-teknis seperti administrasi.</p>
-    <div class="grp"><h3>Technologies</h3><div class="chips"><span class="chip t">HTML</span><span class="chip t">CSS</span><span class="chip t">Tailwind</span><span class="chip t">TypeScript</span><span class="chip t">Java</span><span class="chip t">Kotlin</span><span class="chip t">Swift</span><span class="chip t">Python</span><span class="chip t">Laravel</span><span class="chip t">Express JS</span><span class="chip t">MySQL</span><span class="chip t">Firebase</span></div></div>
-    <div class="grp"><h3>Tools &amp; soft skills</h3><div class="chips"><span class="chip">Figma</span><span class="chip">Canva</span><span class="chip">CapCut</span><span class="chip">Google Workspace</span><span class="chip">Teamwork</span><span class="chip">Organized</span><span class="chip">Active listening</span></div></div>
-  </div>
-</div></section>
+      <section>
+        <div class="wrap">
+          <h2>Experience</h2>
+          <p class="sub">Beberapa pengalaman pilihan.</p>
+          <div class="exp" id="expH"></div>
+          <p class="more">
+            <a class="btn g" href="pages/experience.html"
+              >Lihat semua experience</a
+            >
+          </p>
+        </div>
+      </section>
+      <section class="alt">
+        <div class="wrap">
+          <h2>Projects</h2>
+          <p class="sub">Beberapa project pilihan.</p>
+          <div class="grid" id="prjH"></div>
+          <p class="more">
+            <a class="btn g" href="pages/projects.html">Lihat semua project</a>
+          </p>
+        </div>
+      </section>
+    </main>
 
-<section><div class="wrap"><h2>Experience</h2><p class="sub">Beberapa pengalaman pilihan.</p><div class="exp" id="expH"></div><p class="more"><a class="btn g" href="pages/experience.html">Lihat semua experience</a></p></div></section>
-<section class="alt"><div class="wrap"><h2>Projects</h2><p class="sub">Beberapa project pilihan.</p><div class="grid" id="prjH"></div><p class="more"><a class="btn g" href="pages/projects.html">Lihat semua project</a></p></div></section>
-</main>
+    <dialog id="dlg"></dialog>
 
-<dialog id="dlg"></dialog>
+    <footer>
+      <div class="wrap">
+        <div class="soc">
+          <a href="mailto:chelsea.lu.cl@gmail.com">Email</a>
+          <a
+            href="https://www.linkedin.com/in/graciella-chelsea-lu-a551a3350/"
+            target="_blank"
+            rel="noopener"
+            >LinkedIn</a
+          >
+          <a href="https://github.com/Grcllch02" target="_blank" rel="noopener"
+            >GitHub</a
+          >
+          <a
+            href="https://instagram.com/grcll_ch"
+            target="_blank"
+            rel="noopener"
+            >Instagram</a
+          >
+        </div>
+        © 2026 Graciella Chelsea Lu
+      </div>
+    </footer>
 
-<footer><div class="wrap">
-  <div class="soc">
-    <a href="mailto:chelsea.lu.cl@gmail.com">Email</a>
-    <a href="https://www.linkedin.com/in/graciella-chelsea-lu-a551a3350/" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://github.com/Grcllch02" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://instagram.com/grcll_ch" target="_blank" rel="noopener">Instagram</a>
-  </div>
-  © 2026 Graciella Chelsea Lu
-</div></footer>
-
-<script src="js/script.js"></script>
-</body>
+    <script src="js/script.js"></script>
+  </body>
 </html>
