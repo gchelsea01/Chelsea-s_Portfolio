@@ -1334,20 +1334,7 @@
         portfolio: "",
         cv: "",
       }; /* isi dengan link portfolio dan CV Anda */
-      [
-        ["lp", "portfolio"],
-        ["lc", "cv"],
-      ].forEach(([id, k]) => {
-        const a = $(id);
-        if (LINKS[k]) {
-          a.href = LINKS[k];
-          a.target = "_blank";
-          a.rel = "noopener";
-        } else {
-          a.title = "Link belum diisi";
-          a.setAttribute("aria-disabled", "true");
-        }
-      });
+      
       const root = document.documentElement;
       function theme(t) {
         root.dataset.theme = t;
