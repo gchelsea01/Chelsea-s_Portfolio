@@ -1,0 +1,10 @@
+/* ==========================================================
+   responsive.css — gaya khusus tablet/mobile (burger menu, 1 kolom)
+   Wajib dimuat SETELAH style.css
+   ========================================================== */
+@media(max-width:820px){
+  .bg{display:block}nav ul{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;padding:8px 24px 16px;background:var(--bg);border-bottom:1px solid var(--line);font-size:16px}nav.open ul{display:flex;animation:dd .25s ease}nav ul a{display:block;padding:14px 0;border-bottom:1px solid var(--line)}nav ul li:last-child a{border:0}
+  .about .wrap{grid-template-columns:1fr}
+  .item{grid-template-columns:1fr;gap:6px}
+  section{padding:72px 0}
+}
